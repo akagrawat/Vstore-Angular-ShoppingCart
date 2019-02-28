@@ -1,0 +1,71 @@
+
+
+  <div  class="container" style="padding:10px">
+    <mdb-carousel [isControls]="false"  class="z-depth-2" >
+        <mdb-carousel-item style="transition: transform 1s ease, opacity .1s ease-out">
+          <img class="d-block w-100 animated slideInUp " src="assets/images/vivobannerr.png" alt="First slide" >
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img class="d-block w-100 animated slideInUp" src="assets/images/vivoposter.jpg" alt="Second slide">
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img class="d-block w-100 animated slideInUp" src="assets/images/realmeposter.jpg" alt="Third slide">
+        </mdb-carousel-item>
+      </mdb-carousel>
+</div>
+
+<section class="text-center pb-3 my-5 container">
+
+
+  <div class="row">
+    <!--Grid column-->
+    <div class="col-lg-4 col-md-12 mb-3" *ngFor='let product of products' [routerLink]="['/productdetail',product.id]">
+      <!--Card-->
+      <mdb-card cascade="true" wider="true" class="card-ecommerce">
+        <!--Card image-->
+        <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+          <mdb-card-img src={{product.productImage}}
+            alt="sample photo"></mdb-card-img>
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <!--Card image-->
+        <!--Card content-->
+        <mdb-card-body cascade="true" class="text-center no-padding">
+          <!--Category & Title-->
+          <a  class="text-muted">
+            <h5>Smartphone</h5>
+          </a>
+          <mdb-card-title>
+            <h4 class="card-title">
+              <strong>
+                <a >{{product.productName}}</a>
+              </strong>
+            </h4>
+          </mdb-card-title>
+          <!--Description-->
+          <mdb-card-text>{{product.productDescription}}</mdb-card-text>
+          <!--Card footer-->
+          <mdb-card-footer>
+            <span class="float-left font-weight-bold">
+              <strong>{{product.productPrice}}</strong>
+            </span>
+            <span class="float-right">
+              <a class="" data-toggle="tooltip" data-placement="top" title="Quick Look">
+                <i class="far fa-eye grey-text ml-3"></i>
+              </a>
+              <a class="" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
+                <i class="fas fa-heart grey-text ml-3"></i>
+              </a>
+            </span>
+          </mdb-card-footer>
+        </mdb-card-body>
+        <!--Card content-->
+      </mdb-card>
+      <!--Card-->
+    </div>
+    </div>
+</section>
+<!-- Section-->
+
