@@ -1,3 +1,90 @@
-<p>
-  register works!
-</p>
+<div class="login ">
+    <!-- Section -->
+    <div class="jarallax" data-jarallax='{"speed": 0.2}' >
+    <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+         <!-- Content -->
+         <div class="container">
+            <!--Grid row-->
+            <div class="row mt-5">
+              <!--Grid column-->
+              <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
+                <h1  class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Sign up right now! </h1>
+                <h1  class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s"> <span class="pink-text"></span> </h1>
+                <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s">Find & Buy Everything You Need! 
+                  Great Deals, Easy Returns, Hassle Free Shopping. Get Exciting Offers, Deals & Discounts on all Categories.<br/>
+                  Free Shipping on Qualified Orders. Pay on Delivery. 100% Purchase Protection. Easy Returns. Huge Selection. </h6>
+                <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Learn more</a>
+                
+              </div>
+
+              
+              <!--Grid column-->
+              <!--Grid column-->
+              <div class="col-md-6 col-xl-5 mb-4">
+                <!--Form-->
+                <div class="card wow fadeInRight" data-wow-delay="0.3s">
+                  <div class="card-body">
+                    <!--Header-->
+                    <div class="text-center">
+                      <h3 class="white-text">
+                        <i class="fa fa-user white-text"></i> Register:</h3>
+                      <hr class="hr-light">
+                    </div>
+                    <p>{{registerForm.value | json}}</p>
+                    <!--Body-->
+                    <form novalidate [formGroup]="registerForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="md-form">
+                      <i class="fa fa-user prefix white-text active"></i>
+                      <input  formControlName="username" type="text" id="form3" class="white-text form-control"  name="username" required>
+                      <label for="form3" class="active">Your name</label>
+                      <div *ngIf="formErrors.username" class="alert alert-primary" role="alert">
+                          {{formErrors.username}}
+                        </div>
+                    </div>
+                    <div class="md-form">
+                      <i class="fa fa-envelope prefix white-text active"></i>
+                      <input  formControlName="useremail" type="email" id="form2" class="white-text form-control" name="useremail" required>
+                      <label for="form2" class="active">Your email</label>
+                      <div *ngIf="formErrors.useremail" class="alert alert-warning" role="alert">
+                          {{formErrors.useremail}}
+                        </div>
+                    </div>
+                    <div class="md-form">
+                        <i class="fa fa-lock prefix white-text active"></i>
+                        <input  formControlName="password"  type="password" id="form10" class="white-text form-control" name="password" required>
+                        <label for="form10" class="active">Your password</label>
+                        <div *ngIf="formErrors.password" class="alert alert-primary" role="alert">
+                            {{formErrors.password}}
+                          </div>
+                      </div>
+                    <div class="text-center mt-4">
+                      <button [disabled]="fform.invalid" type="submit" class="btn btn-pink">Sign up</button>
+                      <hr class="hr-light mb-3 mt-4">
+                      <div class="inline-ul text-center d-flex justify-content-center">
+                        <a class="p-2 m-2 tw-ic">
+                          <i class="fab fa-twitter white-text"></i>
+                        </a>
+                        <a class="p-2 m-2 li-ic">
+                          <i class="fab fa-linkedin-in white-text"> </i>
+                        </a>
+                        <a class="p-2 m-2 ins-ic">
+                          <i class="fab fa-instagram white-text"> </i>
+                        </a>
+                      </div>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+                <!--/.Form-->
+              </div>
+              <!--Grid column-->
+            </div>
+            <!--Grid row-->
+          </div>
+          <!-- Content -->
+         
+    </div>
+    </div>
+      <!-- Section: -->
+      </div>

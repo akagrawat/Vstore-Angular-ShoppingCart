@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MobileComponent } from './mobile/mobile.component';
@@ -29,6 +31,8 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [ ProductService],
