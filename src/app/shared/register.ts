@@ -1,6 +1,6 @@
 
 export class Register {
     username: string;
-    useremail: string;
+    email: string;
     password: string;
 }

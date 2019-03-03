@@ -33,7 +33,7 @@
                     </div>
                     <p>{{registerForm.value | json}}</p>
                     <!--Body-->
-                    <form novalidate [formGroup]="registerForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+                    <form novalidate (ngSubmit)="onSubmit()" [formGroup]="registerForm" #fform="ngForm">
                     <div class="md-form">
                       <i class="fa fa-user prefix white-text active"></i>
                       <input  formControlName="username" type="text" id="form3" class="white-text form-control"  name="username" required>
@@ -44,10 +44,10 @@
                     </div>
                     <div class="md-form">
                       <i class="fa fa-envelope prefix white-text active"></i>
-                      <input  formControlName="useremail" type="email" id="form2" class="white-text form-control" name="useremail" required>
+                      <input  formControlName="email" type="email" id="form2" class="white-text form-control" name="email" required>
                       <label for="form2" class="active">Your email</label>
-                      <div *ngIf="formErrors.useremail" class="alert alert-warning" role="alert">
-                          {{formErrors.useremail}}
+                      <div *ngIf="formErrors.email" class="alert alert-warning" role="alert">
+                          {{formErrors.email}}
                         </div>
                     </div>
                     <div class="md-form">
@@ -59,7 +59,7 @@
                           </div>
                       </div>
                     <div class="text-center mt-4">
-                      <button [disabled]="fform.invalid" type="submit" class="btn btn-pink">Sign up</button>
+                      <button [disabled]="fform.invalid"  type="submit" class="btn btn-pink">Sign up</button>
                       <hr class="hr-light mb-3 mt-4">
                       <div class="inline-ul text-center d-flex justify-content-center">
                         <a class="p-2 m-2 tw-ic">
@@ -87,4 +87,5 @@
     </div>
     </div>
       <!-- Section: -->
+
       </div>
