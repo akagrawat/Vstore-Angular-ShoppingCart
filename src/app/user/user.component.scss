@@ -12,3 +12,27 @@
     box-shadow: 0 5px 11px 0 rgba(0,0,0,.18),
     0 4px 15px 0 rgba(0,0,0,.15)
 }
+.avatar {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin-top: -60px;
+    overflow: hidden;
+    border: 5px solid #fff;
+}
+
+.card-up {
+    overflow: hidden;
+    height: 120px;
+    -webkit-border-top-left-radius: .25rem;
+    border-top-left-radius: .25rem;
+    -webkit-border-top-right-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.custom-img {
+    position: absolute;
+    margin-left: 41%;
+    margin-right: 25%;
+    margin-top: 15%;
+    width: 76px;
+}
