@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Register } from '../shared/register';
 import { AuthService } from '../services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -52,7 +53,8 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private db: AngularFireDatabase,
-    public afAuth: AngularFireAuth) {
+    public afAuth: AngularFireAuth,
+    private spinner: NgxSpinnerService) {
     this.createForm();
    }
 
@@ -107,6 +109,12 @@ export class RegisterComponent implements OnInit {
     this.authService.signup(this.register.email, this.register.password, this.register.username);
     this.register.email = this.register.password = '';
 
+    // spinner
+    this.spinner.show();
+      setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+    }, 3000);
     // reset form after submission
     this.registerForm.reset({
       username: '',

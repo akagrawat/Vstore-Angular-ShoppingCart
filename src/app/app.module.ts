@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ import { UserComponent } from './user/user.component';
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularFireDatabaseModule,
+    NgxSpinnerModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [ ProductService,

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Register } from '../shared/register';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -42,7 +43,8 @@ export class LoginComponent implements OnInit {
     public authService: AuthService,
     private log: FormBuilder,
     private router: Router,
-    public afAuth: AngularFireAuth) {
+    public afAuth: AngularFireAuth,
+    private spinner: NgxSpinnerService) {
       this.createForm();
    }
 
@@ -106,7 +108,12 @@ export class LoginComponent implements OnInit {
     this.login = this.loginForm.value;
     this.authService.login(this.login.email, this.login.password);
     this.login.email = this.login.password = '';
-
+    // spinner
+    this.spinner.show();
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+  }, 3000);
     // user for reset login form value
     this.loginForm.reset({
       email: '',
