@@ -16,10 +16,12 @@
     <!-- Card content -->
     <div class="card-body card-body-cascade text-center custom-card">
   
+
       <!-- Title -->
-      <h4 class="card-title"><strong>My adventure</strong></h4>
+      <h5>Welcome</h5>
+      <h4 class="card-title" *ngFor="let user of userList" style="color:#FC6262"><strong>{{user.username}}</strong></h4>
       <!-- Subtitle -->
-      <h6 class="font-weight-bold indigo-text py-2">Photography</h6>
+      <h6 class="font-weight-bold indigo-text py-2">Prime</h6>
       <!-- Text -->
       <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem perspiciatis voluptatum a, quo nobis, non commodi quia repellendus sequi nulla voluptatem dicta reprehenderit, placeat laborum ut beatae ullam suscipit veniam.
       </p>
@@ -55,10 +57,16 @@
     <!-- Content -->
     <div class="card-body" style="text-align: center">
       <!-- Name -->
-      <h4 class="card-title">Anna Doe</h4>
+      <span *ngFor="let user of userList">
+      <h4 class="card-title" style="color: #f334a7"><strong>{{user.username}}</strong></h4>
+      <p>Email: {{user.email}}</p>
+    </span>
+     
       <hr>
       <!-- Quotation -->
-      <button type="button" class="btn blue-gradient btn-lg btn-block">Manage Profile</button>
+      <button type="button" class="btn blue-gradient btn-lg">Manage Profile</button>
+      <button (click)="userLogout()" type="button" class="btn peach-gradient btn-lg waves-effect">Logout</button>
+
     </div>
   
   </div>
@@ -124,42 +132,54 @@
 </div>
 </div>
 
-<div class="container">
+<div class="container" *ngFor="let user of userList">
 <!-- Default form contact -->
-<form class="text-center border border-light p-5">
+<form novalidate (ngSubmit)="onSubmit()" [formGroup]="profileForm" #pform="ngForm" class="text-center border border-light p-5">
 
         <p class="h4 mb-4"><b>Edit Profile</b></p>
     
         <!-- Name -->
-        <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name">
+        <input formControlName="username" type="text" id="defaultContactFormName" class="form-control mb-4" value="{{user.username}}" name="username" required>
+        <div *ngIf="formErrors.username" class="alert alert-primary" role="alert">
+          {{formErrors.username}}
+        </div>
     
         <!-- Email -->
-        <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="E-mail">
-    
-        <!-- Subject -->
-        <label>Subject</label>
-        <select class="browser-default custom-select mb-4">
-            <option value="" disabled>Choose option</option>
-            <option value="1" selected>Feedback</option>
-            <option value="2">Report a bug</option>
-            <option value="3">Feature request</option>
-            <option value="4">Feature request</option>
-        </select>
+        <input formControlName="email" type="email" id="defaultContactFormEmail" class="form-control mb-4" value="{{user.email}}" name="email">
+        <div *ngIf="formErrors.email" class="alert alert-primary" role="alert">
+          {{formErrors.email}}
+        </div>
+
+        <input formControlName="phone" type="text" id="defaultContactFormPhone" class="form-control mb-4" value="{{user.phone}}" name="phone" pattern="[789][0-9]{9}" required>
+        <div *ngIf="formErrors.phone" class="alert alert-primary" role="alert">
+          {{formErrors.phone}}
+        </div>
+
+      
     
         <!-- Message -->
         <div class="form-group">
-            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Message"></textarea>
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Address" name="address"></textarea>
+        </div>
+        <div *ngIf="formErrors.address" class="alert alert-primary" role="alert">
+          {{formErrors.address}}
         </div>
     
-        <!-- Copy -->
-        <div class="custom-control custom-checkbox mb-4">
-            <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
-            <label class="custom-control-label" for="defaultContactFormCopy">Send me a copy of this message</label>
-        </div>
     
         <!-- Send button -->
-        <button class="btn btn-info btn-block" type="submit">Send</button>
+        <button [disabled]="pform.invalid" class="btn btn-info btn-block" type="submit">Send</button>
     
     </form>
     <!-- Default form contact -->
+
+
+    <div >
+      <p>{{userList | json}}</p>
+      <p></p>
+      <ul>
+        <li *ngFor="let user of userList">
+          <p>{{user.username}}</p>
+        </li>
+      </ul>
+    </div>
 </div>

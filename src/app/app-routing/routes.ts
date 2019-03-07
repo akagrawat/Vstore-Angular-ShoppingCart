@@ -16,8 +16,8 @@ export const routes: Routes = [
     {path: 'mobile', component: MobileComponent},
     {path: 'contactus', component: ContactusComponent},
     { path: 'productdetail/:id', component: ProductdetailComponent },
-    {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
-    {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
-    {path: 'user', component: UserComponent},
+    {path: 'register', component: RegisterComponent},
+    {path: 'login', component: LoginComponent, },
+    {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
     {path: '', redirectTo: '/home', pathMatch: 'full' },
 ];

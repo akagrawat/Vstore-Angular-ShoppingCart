@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Register } from '../shared/register';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -17,13 +16,16 @@ export class LoginComponent implements OnInit {
   login: Register;
   user: firebase.User;
 
+  // user for form value reset
   @ViewChild('lform') loginFormDirective;
 
+  // Form errors initialization
   formErrors = {
     'email': '',
     'password': '',
   };
 
+  // Form Validation
   validationMessages = {
     'email': {
       'required': 'Email is required !',
@@ -55,6 +57,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
+    // fetching current user info
     this.authService.getLoggedInUser()
     .subscribe(user => {
         console.log(user);
@@ -98,11 +101,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // login form data submission
   onSubmit() {
     this.login = this.loginForm.value;
     this.authService.login(this.login.email, this.login.password);
     this.login.email = this.login.password = '';
 
+    // user for reset login form value
     this.loginForm.reset({
       email: '',
       password: '',

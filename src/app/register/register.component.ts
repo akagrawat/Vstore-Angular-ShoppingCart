@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Register } from '../shared/register';
@@ -14,19 +15,24 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   register: Register;
   user: firebase.User;
+  userId: string;
+
+  // reset Form  values
   @ViewChild('fform') registerFormDirective;
 
+  // Form error intialization
   formErrors = {
     'username': '',
     'email': '',
     'password': '',
   };
 
+  // Form validation
   validationMessages = {
     'username': {
-      'required': 'First name is required !',
-      'minlength': 'First name must be 2 characterd long !',
-      'maxlength': 'First name cannot be more than 25 characters !'
+      'required': 'Name is required !',
+      'minlength': 'Name must be 2 characterd long !',
+      'maxlength': 'Name cannot be more than 25 characters !'
     },
       'email': {
       'required': 'Email is required !',
@@ -45,16 +51,20 @@ export class RegisterComponent implements OnInit {
     private reg: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private db: AngularFireDatabase,
     public afAuth: AngularFireAuth) {
     this.createForm();
    }
 
   ngOnInit() {
+
+    // subscribe logged in user data
     this.authService.getLoggedInUser()
     .subscribe(user => {
         console.log(user);
         this.user = user;
       });
+
   }
 
   createForm() {
@@ -91,11 +101,13 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  // submit signup form data
   onSubmit() {
     this.register = this.registerForm.value;
-    this.authService.signup(this.register.email, this.register.password);
+    this.authService.signup(this.register.email, this.register.password, this.register.username);
     this.register.email = this.register.password = '';
 
+    // reset form after submission
     this.registerForm.reset({
       username: '',
       email: '',
@@ -104,6 +116,7 @@ export class RegisterComponent implements OnInit {
     this.registerFormDirective.resetForm();
   }
 
+  // google login
   loginGoogle() {
     this.authService.googleLogin();
   }
