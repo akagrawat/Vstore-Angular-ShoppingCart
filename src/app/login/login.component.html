@@ -61,14 +61,14 @@
                                             </div>
                                             <div>
                                                 <!-- Forgot password -->
-                                                <a href="">Forgot password?</a>
+                                                <a (click)="basicModal.show()" style="color:#007bff">Forgot password?</a>
                                             </div>
                                         </div>
                                     <div class="text-center mt-4">
                                       <button [disabled]="lform.invalid"  type="submit" class="btn btn-info btn-block my-4">Login</button>
                                       <button type="submit" class="btn btn-pink btn-block my-4">Sign IN with Google</button>
                                       <p style="color:yellow">Not a member?
-                                            <a href="" style="color:white">Register</a>
+                                            <a routerLink="/register" style="color:white">Register</a>
                                         </p>
                                       <hr class="hr-light mb-3 mt-4">
                                       <div class="inline-ul text-center d-flex justify-content-center">
@@ -85,9 +85,56 @@
                                     </div>
                                   </form>
                                   </div>
+                                  
                                 </div>
                                 <!--/.Form-->
                               </div>
+                              
+                              
+                              <!-- Modal -->
+                              <div mdbModal #basicModal="mdb-modal" class="modal fade" id="orangeModalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                              aria-hidden="true">
+                              <div class="modal-dialog modal-notify modal-warning" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <form novalidate #resetForm="ngForm">
+                                  <!--Header-->
+                                  <div class="modal-header text-center">
+                                    <h4 class="modal-title white-text w-100 font-weight-bold py-2">Password Reset</h4>
+                                    <button type="button" class="close" data-dismiss="modal" (click)="basicModal.hide()"aria-label="Close">
+                                      <span aria-hidden="true" class="white-text">&times;</span>
+                                    </button>
+                                  </div>
+                            
+                                  <!--Body-->
+                                  
+                                  <div class="modal-body">
+                                    <div class="md-form mb-5">
+                                      <p> {{resetUser | json}}</p>
+                                      <i class="fas fa-user prefix grey-text"></i>
+                                      <input [(ngModel)]="resetUser.name" #name="ngModel" name="name" type="text" id="form4" class="form-control validate required">
+                                      <label data-error="wrong" data-success="right" for="form4">Your name</label>
+                                    </div>
+                            
+                                    <div class="md-form mb-5">
+                                      <i class="fas fa-envelope prefix grey-text"></i>
+                                      <input [(ngModel)]="resetUser.email" #email="ngModel" name="email" type="email" id="form5" class="form-control validate">
+                                      <label data-error="wrong" data-success="right" for="form5">Your email</label>
+                                    </div>
+                                  </div>
+                            
+                                  <!--Footer-->
+                                  <div class="modal-footer justify-content-center">
+                                    <a type="button" class="btn btn-outline-warning waves-effect" (click)="resetPassword()" (click)="basicModal.hide()">Reset <i class="fas fa-paper-plane-o ml-1"></i></a>
+                                  </div>
+                                  </form>
+                                </div>
+                                <!--/.Content-->
+                              </div>
+                            </div>
+
+                            <!-- // Model-->
+
                
                 <!--Grid column-->
               </div>

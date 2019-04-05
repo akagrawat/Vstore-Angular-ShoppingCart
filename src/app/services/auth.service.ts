@@ -5,6 +5,13 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { auth } from 'firebase';
 import { Observable } from 'rxjs';
+import { Product } from '../shared/product';
+
+
+/*export class ShippingInfo {
+  body: string;
+}
+*/
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +20,18 @@ export class AuthService {
 
   private user: Observable<firebase.User>; // firebase user variable
   private userDetails: firebase.User = null; // use in AuthGuard
-
+  // userShippingInfo: AngularFireList<ShippingInfo[]> = null;
+  userId: string;
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
     private db: AngularFireDatabase
   ) {
-    this.user = afAuth.authState;
-     this.user.subscribe(
+     this.afAuth.authState.subscribe(
         (user) => {
           if (user) {
             this.userDetails = user;
+            // this.userId = this.userDetails.uid;
             console.log(this.userDetails);
           } else {
             this.userDetails = null;
@@ -51,7 +59,7 @@ export class AuthService {
         this.router.navigate(['/user']);
       })
       .catch(err => {
-        console.log('Something went wrong:', err.message);
+        alert('Something went wrong:' + err.message);
       });
   }
 
@@ -65,7 +73,7 @@ export class AuthService {
         this.router.navigate(['/user']);
       })
       .catch(err => {
-        console.log('Something went wrong:', err.message);
+        alert('Something went wrong:' + err.message);
       });
   }
 
@@ -109,4 +117,15 @@ export class AuthService {
   getUsers() {
   return this.db.list('users');
   }
+
+
+  /*
+  getShippingInfo(): AngularFireList<ShippingInfo[]> {
+    if (!this.userId) { return; }
+    return this.db.list(`users/${this.userId}/shipping-info`);
+    }
+     */
+
+  // Password reset
+
 }

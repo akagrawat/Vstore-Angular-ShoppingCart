@@ -1,0 +1,50 @@
+.liner {
+    height: 2px;
+    background: #ddd;
+    position: absolute;
+    width: 78%;
+    margin: 63px auto;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.round-tabs {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+    color: #febe29;
+    border: 2px solid #febe29;
+    margin: 20px auto;
+}
+
+.check {
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    
+}
+
+.hr1 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    border: 0;
+    width: 82%;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}

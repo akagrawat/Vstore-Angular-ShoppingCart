@@ -15,7 +15,7 @@
               <a class="nav-link waves-light" routerLink="/mobile" mdbWavesEffect>Our Products</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link waves-light" mdbWavesEffect>About us</a>
+              <a class="nav-link waves-light" routerLink="/aboutus" mdbWavesEffect>About us</a>
           </li>
 
           <li class="nav-item" routerLink="/contactus">
@@ -39,6 +39,15 @@
       <!-- Links -->
 
       <ul class="nav navbar-nav nav-flex-icons ml-auto">
+            <li class="nav-item active" >
+                <button type="button" routerLink="/mycart" class="btn btn-primary">
+                <b>Cart </b> <span class="badge badge-light">{{cartItemCount}} </span>
+                <span class="sr-only">unread messages</span>
+                </button>
+            </li>
+            <li class="nav-item" routerLink="/login">
+                <a class="nav-link waves-light" mdbWavesEffect>Login</a>
+            </li>
                 <li class="nav-item">
                         <a class="nav-link" routerLink="/register"><i class="fas fa-user-circle fa-2x"></i></a>
                       </li>

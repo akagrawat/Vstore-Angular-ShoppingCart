@@ -9,6 +9,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
@@ -26,6 +27,12 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { AdminComponent } from './admin/admin.component';
+import { MycartComponent } from './mycart/mycart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { BillingDetailsComponent } from './billing-details/billing-details.component';
+import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,19 +44,26 @@ import { UserComponent } from './user/user.component';
     ContactusComponent,
     RegisterComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    AboutusComponent,
+    AdminComponent,
+    MycartComponent,
+    CheckoutComponent,
+    BillingDetailsComponent,
+    PaymentDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularFireDatabaseModule,
     NgxSpinnerModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
   ],
   providers: [ ProductService,
                AuthService,

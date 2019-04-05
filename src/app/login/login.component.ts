@@ -14,8 +14,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  resetForm: FormGroup;
   login: Register;
   user: firebase.User;
+  resetUser = { name: '', email: ''};
 
   // user for form value reset
   @ViewChild('lform') loginFormDirective;
@@ -121,6 +123,12 @@ export class LoginComponent implements OnInit {
     });
 
     this.loginFormDirective.resetForm();
+  }
+
+  resetPassword() {
+    this.afAuth.auth.sendPasswordResetEmail(this.resetUser.email);
+    alert('We sent a reset link your register Email');
+
   }
 
 }

@@ -21,7 +21,12 @@
               <span class="text-muted" style="color:crimson !important"></span>
             </li>
           </ul>
-          <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+          <div *ngFor="let alert of alerts">
+            <button style="width: 300px;background: #ff4500" class="btn" [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</button>
+          </div>
+          <button *ngIf="alerts==0" class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+
+          
         </div>
       </div>
     </div>

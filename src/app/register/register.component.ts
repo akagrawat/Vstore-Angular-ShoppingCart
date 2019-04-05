@@ -67,6 +67,7 @@ export class RegisterComponent implements OnInit {
         this.user = user;
       });
 
+
   }
 
   createForm() {
@@ -127,6 +128,12 @@ export class RegisterComponent implements OnInit {
   // google login
   loginGoogle() {
     this.authService.googleLogin();
+  }
+
+
+  passwordReset() {
+    this.register = this.registerForm.value;
+    this.afAuth.auth.sendPasswordResetEmail(this.register.email);
   }
 
 }

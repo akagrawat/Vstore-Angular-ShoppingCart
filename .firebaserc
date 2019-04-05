@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "vstore": "vstorerj",
+    "default": "vstorerj"
+  }
+}
