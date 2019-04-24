@@ -25,7 +25,7 @@ export class ProductService {
   getProduct(id: number): Product {
     return PRODUCT.filter((product) => (product.id === id))[0];
   }
-  getProductFromCart() {
+  getProductFromCart(): Product[] {
   // return localStoreage.getItem('product');
       return JSON.parse(localStorage.getItem('product'));
     }

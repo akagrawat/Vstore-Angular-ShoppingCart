@@ -67,8 +67,7 @@ export class LoginComponent implements OnInit {
         console.log(user);
         this.user = user;
         if (user) {
-          this.router.navigate(['user']);
-
+          this.router.navigate(['mycart']);
         }
       });
 

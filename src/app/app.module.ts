@@ -33,6 +33,7 @@ import { MycartComponent } from './mycart/mycart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { BillingDetailsComponent } from './billing-details/billing-details.component';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { PaymentDetailsComponent } from './payment-details/payment-details.compo
     MycartComponent,
     CheckoutComponent,
     BillingDetailsComponent,
-    PaymentDetailsComponent
+    PaymentDetailsComponent,
+    OrderConfirmationComponent
   ],
   imports: [
     BrowserModule,

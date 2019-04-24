@@ -45,11 +45,11 @@
                 <span class="sr-only">unread messages</span>
                 </button>
             </li>
-            <li class="nav-item" routerLink="/login">
-                <a class="nav-link waves-light" mdbWavesEffect>Login</a>
+            <li class="nav-item" routerLink="/login" *ngIf="user== NULL" style="padding:7px;font-size:17px">
+                <a class="nav-link waves-light" mdbWavesEffect>Login / Register</a>
             </li>
-                <li class="nav-item">
-                        <a class="nav-link" routerLink="/register"><i class="fas fa-user-circle fa-2x"></i></a>
+                <li class="nav-item" *ngIf="user" style="padding:7px">
+                        <a class="nav-link" routerLink="/user"><i class="fas fa-user-circle fa-2x"></i></a>
                       </li>
     
    </ul>

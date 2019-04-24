@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChildren, AfterViewInit} from '@angular/core';
 import { Product } from '../shared/product';
+import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -39,7 +40,8 @@ export class PaymentDetailsComponent implements OnInit, AfterViewInit {
                private afAuth: AngularFireAuth,
                private db: AngularFireDatabase,
                private authService: AuthService,
-               private spinner: NgxSpinnerService) {
+               private spinner: NgxSpinnerService,
+               private router: Router) {
     this.products = this.productService.getProductFromCart();
     this.cartItemCount = this.products.length;
     this.products.forEach((product) => {
@@ -57,6 +59,7 @@ export class PaymentDetailsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getData();
+
   }
 
   ngAfterViewInit() {
@@ -110,6 +113,15 @@ export class PaymentDetailsComponent implements OnInit, AfterViewInit {
       }
       });
     });
+  }
+
+  confirmOrder() {
+    const x = this.productService.getProductFromCart();
+    console.log(x);
+    this.db.list('users/' + this.user.uid).update('oderedItem', x);
+    this.productService.removeAllProductFromCart();
+    this.router.navigate(['/order-confirm']);
+
   }
 
 }

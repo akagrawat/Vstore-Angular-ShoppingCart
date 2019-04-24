@@ -115,9 +115,12 @@ export class AuthService {
 
 // get database users
   getUsers() {
-  return this.db.list('users');
+  return this.db.list('users/');
   }
 
+  getOrderedProduct() {
+
+  }
 
   /*
   getShippingInfo(): AngularFireList<ShippingInfo[]> {

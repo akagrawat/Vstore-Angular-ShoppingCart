@@ -7,7 +7,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 import { Register } from '../shared/register';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -62,12 +62,16 @@ export class UserComponent implements OnInit {
     private authService: AuthService,
     private prf: FormBuilder,
     private db: AngularFireDatabase,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router,
   ) {
       this.createForm();
       // fetching current user info
     afAuth.authState.subscribe((user) => {
       this.user = user;
+      if (user == null) {
+      this.router.navigate(['login']);
+    }
     });
 
 
@@ -77,6 +81,12 @@ export class UserComponent implements OnInit {
    this.getData();
 
     /** spinner starts on init */
+     // spinner
+     this.spinner.show();
+     setTimeout(() => {
+       /** spinner ends after 5 seconds */
+       this.spinner.hide();
+   }, 3000);
 
   }
 
@@ -154,12 +164,6 @@ getData() {
       // Register is a class which have user properties
       // (user as Register) is a typecasting here ..user object as Register
 
-      // spinner
-      this.spinner.show();
-      setTimeout(() => {
-        /** spinner ends after 5 seconds */
-        this.spinner.hide();
-    }, 3000);
 
     }
 

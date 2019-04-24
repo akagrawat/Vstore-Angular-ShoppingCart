@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { CanActivate, Router } from '@angular/router';
 
 
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -82,7 +83,8 @@ export class BillingDetailsComponent implements OnInit {
               private afAuth: AngularFireAuth,
                private db: AngularFireDatabase,
                private authService: AuthService,
-               private spinner: NgxSpinnerService
+               private spinner: NgxSpinnerService,
+               private router: Router
               ) {
                 this.createForm();
                 // fetching current user info
@@ -157,6 +159,8 @@ export class BillingDetailsComponent implements OnInit {
       zip: ''
     });
     this.billingFormDirective.resetForm();
+        // spinner
+      this.router.navigate(['/payment']);
   }
 
   getData() {

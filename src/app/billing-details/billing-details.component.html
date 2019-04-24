@@ -2,7 +2,20 @@
   <h3 class="text-center">Checking Out Products</h3>
   <div class="board-inner" id="status-buttons">
       <div class="liner"></div>
-  
+      <!-- Spinner-->
+      <ngx-spinner
+      bdOpacity = 0.6
+      bdColor = "#333"
+      size = "medium"
+      color = "#fcff15"
+      type = "line-scale-pulse-out-rapid"
+      [fullScreen] = "true"
+      >
+      <p style="color: white" > Loading... </p>
+      </ngx-spinner>
+
+      <!-- //Spinner-->
+      
       <!-- circular user icon -->
       <div class="check">
           <span class="round-tabs">
@@ -93,7 +106,7 @@
           </div>
         </div>
         <hr class="mb-4">
-        <button [disabled]="ubfform.invalid"  class="btn btn-primary btn-lg btn-block" type="submit">Payment</button>
+        <button  class="btn btn-primary btn-lg btn-block" type="submit">Payment</button>
       </div>
       </form>
     </div>

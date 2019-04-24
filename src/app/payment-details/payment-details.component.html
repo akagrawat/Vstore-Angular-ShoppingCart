@@ -2,7 +2,21 @@
   <h3 class="text-center">Checking Out Products</h3>
   <div class="board-inner" id="status-buttons">
       <div class="liner"></div>
-  
+
+      <!-- Spinner-->
+ 
+<ngx-spinner
+bdOpacity = 0.9
+bdColor = "#333"
+size = "medium"
+color = "#fcff15"
+type = "timer"
+[fullScreen] = "true"
+>
+<p style="color: white" > Loading... </p>
+</ngx-spinner>
+
+<!-- // Spinner-->
       <!-- circular user icon -->
       <div class="check">
           <span class="round-tabs">
@@ -138,7 +152,6 @@
               <button mdbBtn style="background:green" class="waves-light" type="button" (click)="test4.toggle()" mdbWavesEffect>
                 PAYMENT OPTIONS
               </button>
-              
               <div class="" mdbCollapse [isCollapsed]="false" #test4="bs-collapse">
                 <div class="text-center">
                     <button mdbBtn  style="background:transparent;width:75%" class="waves-light customButton2" type="button" (click)="test5.toggle()" mdbWavesEffect>
@@ -147,12 +160,24 @@
                         font-weight: 700;
                         font-size: 17px;">Paytm</span>
                       </button>
+                      <div class="" mdbCollapse [isCollapsed]="false" #test5="bs-collapse">
+                        <button type="button" routerLink="/order-confirm" class="btn btn-lg btn-block" style="background-color: #ff4500;width: 64%;
+                        margin: 0 14% 0 18%;">
+                          Pay Now @ ₹ {{totalPrice}}  <span class="glyphicon glyphicon-chevron-right"></span>
+                        </button>
+                      </div>
 
                       <button mdbBtn  style="background:transparent;width:75%"  class="waves-light customButton1" type="button" (click)="test6.toggle()" mdbWavesEffect>
                           <img src="assets/images/cod.png" width="31px" >
                            <span style="margin-left: 10px;
                           font-weight: 700;"> Cash On Delivery</span>
                           </button>
+                          <div class="" mdbCollapse [isCollapsed]="false" #test6="bs-collapse">
+                            <button type="button" class="btn btn-lg btn-block" routerLink="/order-confirm" style="    background-color: #ff4500;width: 64%;
+                            margin: 0 14% 0 18%;">
+                              Pay Now @ ₹ {{totalPrice}} <span class="glyphicon glyphicon-chevron-right"></span>
+                            </button>
+                          </div>
                     </div>
               </div>
 
@@ -200,6 +225,7 @@
 
 
 <!-- Receipt -->
+<!--
       <div class="mt-5 mb-5 container" id="receipt">
         <a name="" style="position: relative; float: right" id="" class="btn btn-primary" href="javascript:;;" role="button"
           (click)="downloadReceipt()"><i class="fa fa-download"></i> Receipt</a>
@@ -285,6 +311,7 @@
             </div>
           </div>
         </div>
+-->
       
     
 

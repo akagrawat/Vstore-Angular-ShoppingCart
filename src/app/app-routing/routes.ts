@@ -15,6 +15,7 @@ import { MycartComponent} from '../mycart/mycart.component';
 import { CheckoutComponent} from '../checkout/checkout.component';
 import { BillingDetailsComponent } from '../billing-details/billing-details.component';
 import { PaymentDetailsComponent } from '../payment-details/payment-details.component';
+import { OrderConfirmationComponent } from '../order-confirmation/order-confirmation.component';
 
 export const routes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -26,9 +27,10 @@ export const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent },
     {path: 'admin', component: AdminComponent},
-    {path: 'checkouts', component: CheckoutComponent },
-    {path: 'billing-details', component: BillingDetailsComponent},
-    {path: 'payment', component: PaymentDetailsComponent},
-    {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
+    {path: 'checkouts', component: CheckoutComponent, canActivate: [AuthGuard] },
+    {path: 'billing-details', component: BillingDetailsComponent, canActivate: [AuthGuard]},
+    {path: 'payment', component: PaymentDetailsComponent, canActivate: [AuthGuard]},
+    {path: 'order-confirm', component: OrderConfirmationComponent},
+    {path: 'user', component: UserComponent, },
     {path: '', redirectTo: '/home', pathMatch: 'full' },
 ];

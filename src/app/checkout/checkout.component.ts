@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { CanActivate, Router } from '@angular/router';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Profile } from '../shared/profile';
@@ -72,7 +73,8 @@ export class CheckoutComponent implements OnInit {
                private afAuth: AngularFireAuth,
                private db: AngularFireDatabase,
                private authService: AuthService,
-               private spinner: NgxSpinnerService
+               private spinner: NgxSpinnerService,
+               private router: Router
                ) {
                   this.createForm();
                   // fetching current user info
@@ -126,12 +128,6 @@ export class CheckoutComponent implements OnInit {
     this.shippingData = this.shippingForm.value;
     console.log(this.shippingData);
     this.db.list('users/' + this.user.uid).update('shippinginfo', this.shippingData);
-    // spinner
-    this.spinner.show();
-      setTimeout(() => {
-        /** spinner ends after 5 seconds */
-        this.spinner.hide();
-    }, 3000);
     // reset form after submission
     this.shippingForm.reset({
       firstname: '',
@@ -144,6 +140,9 @@ export class CheckoutComponent implements OnInit {
       zip: ''
     });
     this.shippingFormDirective.resetForm();
+
+      this.router.navigate(['/billing-details']);
+
   }
 
   getData() {
