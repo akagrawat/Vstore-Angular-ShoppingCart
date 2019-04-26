@@ -22,6 +22,7 @@ import { ProductdetailComponent } from './productdetail/productdetail.component'
 import { ProductService } from '../app/services/product.service';
 import { AuthService } from '../app/services/auth.service';
 import { AuthGuard } from '../app/services/auth.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ContactusComponent } from './contactus/contactus.component';
 import { RegisterComponent } from './register/register.component';
@@ -58,6 +59,7 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),

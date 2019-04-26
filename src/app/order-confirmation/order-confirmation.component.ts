@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Product } from '../shared/product';
 
 
 
@@ -22,33 +23,28 @@ export class OrderConfirmationComponent implements OnInit {
   tax = 0;
   cartItemCount = 0;
   user: firebase.User;
-  userDetails: Profile[];
+  userDetails: any[];
+   x: any;
+   oderedItem: any;
+   keys: any;
 
   constructor(private productService: ProductService,
     private afAuth: AngularFireAuth,
     private authService: AuthService,
     private spinner: NgxSpinnerService
     ) {
-    this.products = this.productService.getProductFromCart();
-    this.cartItemCount = this.products.length;
-    this.products.forEach((product) => {
-      this.totalPrice += product.productPrice;
-     });
-
-      this.tax = this.totalPrice * (9 / 100);
       afAuth.authState.subscribe((user) => {
         this.user = user;
       });
       this.date = Date.now();
-      this.products = this.authService.getOrderedProduct();
-      console.log(this.products);
-      
+
 
   }
 
   ngOnInit() {
    this.getData();
   }
+
   getData() {
     this.authService.getUsers().snapshotChanges().forEach(userSnapshot => {
       this.userDetails = [];
@@ -58,22 +54,34 @@ export class OrderConfirmationComponent implements OnInit {
         user[`$key`] = userSnapshot.key;
         // get current logined user data
         if ( user[`$key`] === this.user.uid) {
-        this.userDetails.push(user as Profile);
-
+        this.userDetails.push(user as any);
         // Register is a class which have user properties
         // (user as Register) is a typecasting here ..user object as Register
         // spinner
+        for ( const x of this.userDetails) {
+          this.oderedItem = this.userDetails;
+        }
+        for (const x of this.oderedItem) {
+            this.x = x.oderedItem;
+        }
+        this.keys = Object.keys(this.x);
+        for ( let i = 0 ; i < this.keys.length; i++) {
+          this.totalPrice += this.x[i].productPrice;
+          this.cartItemCount += this.x[i].productQuantity;
+        }
+        this.tax = this.totalPrice * (9 / 100);
+
         this.spinner.show();
         setTimeout(() => {
           /** spinner ends after 5 seconds */
           this.spinner.hide();
       }, 3000);
-
       }
+
+
       });
     });
   }
-
 
   downloadReceipt() {
     const data = document.getElementById('receipt');

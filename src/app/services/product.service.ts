@@ -4,17 +4,23 @@ import { PRODUCT } from '../shared/products';
 import { AuthService } from '../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   userLoggedIn: boolean;
+  private userDetails: firebase.User = null;
 
 
   constructor(private authService: AuthService,
               private afAuth: AngularFireAuth,
               private db: AngularFireDatabase,
+              private http: HttpClient,
               ) {
 
    }
@@ -47,5 +53,6 @@ export class ProductService {
   removeAllProductFromCart() {
     return localStorage.removeItem('product');
   }
+
 
 }
