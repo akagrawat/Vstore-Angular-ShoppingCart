@@ -78,7 +78,7 @@
         <div class="col-md-5 mb-3">
           <label for="country">Country</label>
           <select class="custom-select d-block w-100" id="country" required formControlName="country" name="country" required>
-            <option value=""><span *ngIf="!user.shippinginfo.country">Choose...</span>{{user.shippinginfo.country}}</option>
+            <option value=""><span *ngIf="!user.shippinginfo.country">Choose..</span>{{user.shippinginfo.country}}</option>
             <option>India</option>
           </select>
           <div *ngIf="formErrors.country" class="alert alert-primary" role="alert">

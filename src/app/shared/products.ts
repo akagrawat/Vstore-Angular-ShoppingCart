@@ -17,8 +17,8 @@ export const PRODUCT: Product[] = [
       {
         id: 1,
         productName: 'RealMe 1 (Silver)',
-        productBrand: 'RealMe',
-        productSeller: 'RealMe',
+        productBrand: 'Realme',
+        productSeller: 'Realme',
         productImage: '/assets/images/realme1.jpg',
         productCategory: 'Smartphone',
         productFeatured: true,
@@ -108,7 +108,7 @@ export const PRODUCT: Product[] = [
       {
         id: 8,
         productName: 'Oppo R17',
-        productBrand: 'Oppo G6',
+        productBrand: 'Oppo',
         productSeller: 'Oppo',
         productImage: '/assets/images/oopo17.jpeg',
         productCategory: 'Smartphone',

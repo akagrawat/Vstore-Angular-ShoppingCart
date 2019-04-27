@@ -14,12 +14,43 @@
       </mdb-carousel>
 </div>
 
-<section class="text-center pb-3 my-5 container">
+<div class="container">
+  <div class="row customRow" style="font-family:Roboto,sans-serif;padding: 10px">
+
+    <div class="col-md-6">
+        <blockquote class="blockquote float-left" style="color:#212529">
+          <h3 class="bq-title" style="color:#e91e63">Our Best Products</h3>
+        </blockquote>
+    </div>
+        
+    <div class="col-md-6">
+        <div class="btn-group " role="group" aria-label="Basic example" style="float:right">
+            <button mdbBtn type="button" color="unique"  class="waves-light" mdbWavesEffect>
+                <mdb-icon fas icon="th"></mdb-icon>
+                              Sort By</button>
+
+            <div class="btn-group" mdbDropdown>
+            <button mdbDropdownToggle mdbBtn type="button" color="unique"  class="dropdown-toggle waves-light" mdbWavesEffect>Brands</button>
+            <div class="dropdown-menu dropdown-primary">
+                <a class="dropdown-item" href="/mobile">All</a>
+                <a class="dropdown-item" *ngFor="let brandx of brands" (click)="filterByBrand(brandx)">{{brandx}}</a>
+                
+
+            </div>
+        </div>
+        </div>
+    </div>
+
+       
+  </div>
+</div>
+
+<div class="text-center pb-3  container">
 
 
   <div class="row">
     <!--Grid column-->
-    <div class="col-lg-4 col-md-12 mb-3" *ngFor='let product of products' [routerLink]="['/productdetail',product.id]">
+    <div class="col-lg-4 col-md-12 mb-3" *ngFor='let product of products | mobileFilter:brand' [routerLink]="['/productdetail',product.id]">
       <!--Card-->
       <mdb-card cascade="true" wider="true" class="card-ecommerce">
         <!--Card image-->
@@ -66,6 +97,6 @@
       <!--Card-->
     </div>
     </div>
-</section>
+  </div>
 <!-- Section-->
 

@@ -10,11 +10,21 @@ import { ProductService } from '../services/product.service';
 export class MobileComponent implements OnInit {
 
   products: Product[];
+  product: any[];
+  brand: string;
+  brands = ['Apple', 'Realme', 'Nokia', 'LG', 'Vivo', 'Oppo'];
 
   constructor( private productService: ProductService) { }
 
   ngOnInit() {
     this.products = this.productService.getProducts();
   }
+
+  filterByBrand( selectedBrand ) {
+    this.brand = selectedBrand;
+    console.log(this.brand);
+  }
+
+
 
 }

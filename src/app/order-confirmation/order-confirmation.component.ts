@@ -25,7 +25,7 @@ export class OrderConfirmationComponent implements OnInit {
   user: firebase.User;
   userDetails: any[];
    x: any;
-   oderedItem: any;
+   orderedItem: any;
    keys: any;
 
   constructor(private productService: ProductService,
@@ -59,9 +59,9 @@ export class OrderConfirmationComponent implements OnInit {
         // (user as Register) is a typecasting here ..user object as Register
         // spinner
         for ( const x of this.userDetails) {
-          this.oderedItem = this.userDetails;
+          this.orderedItem = this.userDetails;
         }
-        for (const x of this.oderedItem) {
+        for (const x of this.orderedItem) {
             this.x = x.oderedItem;
         }
         this.keys = Object.keys(this.x);

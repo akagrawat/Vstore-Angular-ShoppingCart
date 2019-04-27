@@ -5,7 +5,19 @@
         <div class="jumbotron hoverable p-4">
       <h5>YOUR CART</h5>
       <hr>
-      <div class="row" *ngFor="let product of productAddedToCart;let q = index">
+      
+        <div style="text-align:center" *ngIf="productAddedToCart.length === 0">
+          <div>
+        <img src="assets/images/shopping-cart.png" class="animated swing infinite custom-img" data-wow-delay="0.6s" width="180px">
+      </div>
+        <button routerLink="/mobile" type="button" mdbBtn  style="background: #fb641b;width: 380px" mdbWavesEffect><b>Vstore</b></button>
+        <h3 style="font-family: Roboto,Arial,sans-serif;
+        margin-top: 38px;"> Your Shopping Cart is empty</h3>
+      </div>
+     
+
+
+      <div class="row" *ngFor="let product of productAddedToCart ;let q = index">
           <div class="col-sm-4">
               <div class="product-image">
                 <div class="view hm-zoom z-depth-2" style="cursor: pointer">
@@ -15,7 +27,7 @@
                 <hr>
                 <mdb-icon fas icon="plus-circle" style="font-size:22px"(click)="onAddQuantity(product)"></mdb-icon> 
                 <div style="display:inline-block;margin: 0 5px 0 5px;" >
-                <input type="text" [ngModel]="product.productQuantity" (ngModelChange) ="product.productQuantity=$event" style="width:50px;text-align: center" pattern="[1-9]{1}">
+                <input type="number" [ngModel]="product.productQuantity" (ngModelChange) ="product.productQuantity=$event" style="width:50px;text-align: center" min="1" max="4"  minlength="1" maxlength="1">
               </div>
                 <mdb-icon fas icon="minus-circle" style="font-size:22px" (click)="onRemoveQuantity(product)"></mdb-icon> 
       </div>
@@ -25,11 +37,12 @@
         <p style="color:#878787;font-size:12px">{{product.productCategory}}</p>
         <p style="color:#878787;font-size:12px">Seller: Vision Star</p>
         <h5>₹{{product.productPrice}}</h5>
+
       </div>
 
       <div  class="col-sm-2" style="padding:0">
         
-          <button (click)="removeProduct(product)" mdbBtn type="button" color="primary" size="sm"  mdbWavesEffect>Remove</button>
+          <button (click)="removeProduct(q)" mdbBtn type="button" color="primary" size="sm"  mdbWavesEffect>Remove</button>
       </div>
       <div style="width:97%">
         <hr>
@@ -37,13 +50,14 @@
       </div>
   
     
-      <button routerLink="/checkouts" type="button" mdbBtn  style="float:right;background: #fb641b" mdbWavesEffect><b>PLACE ORDER</b></button>
-      <button routerLink="/mobile" type="button" mdbBtn  style="float:right;background: white;color: black" mdbWavesEffect><b>CONTINUE SHOPPING</b></button>
-
+      <div >
+      <button routerLink="/checkouts" *ngIf="productAddedToCart.length != 0"  type="button" mdbBtn  style="float:right;background: #fb641b" mdbWavesEffect><b>PLACE ORDER</b></button>
+      <button routerLink="/mobile"  type="button" mdbBtn  style="float:right;background: white;color: black" mdbWavesEffect><b>CONTINUE SHOPPING</b></button>
+        </div>
     </div>
   </div>
 
-    <div class="col-12 col-md-4" style="color:#212529">
+    <div class="col-12 col-md-4" style="color:#212529" *ngIf="productAddedToCart.length != 0">
         <div class="jumbotron hoverable p-4">
         <h5>PRICE DETAILS</h5>
         <table class="table" cellspacing="0" style="max-height: 28px">
@@ -57,8 +71,12 @@
                 <td style="color:#388e3c">FREE</td>
               </tr>
               <tr>
+                <th scope="row">Tax</th>
+                <td style="color:#388e3c">{{tax}}</td>
+              </tr>
+              <tr>
                 <th scope="row">Amount Payable</th>
-                <td style="font-weight:700;color: #ff4500;font-size: 20px">₹{{allTotal}}</td>
+                <td style="font-weight:700;color: #ff4500;font-size: 20px">₹{{allTotal + tax | number:'1.0-0'}}</td>
               </tr>
             </tbody>
           </table>

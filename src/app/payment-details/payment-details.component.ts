@@ -34,6 +34,7 @@ export class PaymentDetailsComponent implements OnInit, AfterViewInit {
 
 
 
+
   @ViewChildren(CollapseComponent) collapses: CollapseComponent[];
 
   constructor( private productService: ProductService,
@@ -117,8 +118,7 @@ export class PaymentDetailsComponent implements OnInit, AfterViewInit {
 
   confirmOrder() {
     const x = this.productService.getProductFromCart();
-    console.log(x);
-    this.db.list('users/' + this.user.uid).update('oderedItem', x);
+    this.db.list('users/' + this.user.uid ).set('oderedItem', x);
     this.productService.removeAllProductFromCart();
     this.router.navigate(['/order-confirm']);
 

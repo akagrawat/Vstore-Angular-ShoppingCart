@@ -3,6 +3,7 @@ import { ProductService } from '../services/product.service';
 import { Product } from '../shared/product';
 import { SharedService } from '../services/shared.service';
 import { AuthService} from '../services/auth.service';
+import { Router } from '@angular/router';
 import { AngularFireList, AngularFireDatabase} from 'angularfire2/database';
 @Component({
   selector: 'app-mycart',
@@ -14,11 +15,14 @@ productAddedToCart: Product[];
 
 allTotal: number;
 cartItemCount = 0;
+tax: number;
+quantity = 0;
 
   constructor(private productService: ProductService,
               private sharedServices: SharedService,
               private db: AngularFireDatabase,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -43,7 +47,6 @@ cartItemCount = 0;
 
     });*/
 
-
     console.log(this.productAddedToCart);
     this.productService.removeAllProductFromCart();
     this.productService.addProductToCart(this.productAddedToCart);
@@ -52,7 +55,13 @@ cartItemCount = 0;
   }
 onAddQuantity(product: Product) {
   this.productAddedToCart = this.productService.getProductFromCart();
-  this.productAddedToCart.find(p => p.id === product.id).productQuantity = product.productQuantity + 1;
+  this.quantity = this.productAddedToCart.find(p => p.id === product.id).productQuantity;
+  if (this.quantity > 3 ) {
+    this.productAddedToCart.find(p => p.id === product.id).productQuantity = product.productQuantity;
+  } else {
+    this.productAddedToCart.find(p => p.id === product.id).productQuantity = product.productQuantity + 1;
+
+  }
   this.productService.removeAllProductFromCart();
   this.productService.addProductToCart(this.productAddedToCart);
   this.calculateAllTotal(this.productAddedToCart);
@@ -60,8 +69,13 @@ onAddQuantity(product: Product) {
 
 onRemoveQuantity(product: Product) {
   this.productAddedToCart = this.productService.getProductFromCart();
-  this.productAddedToCart.find(p => p.id === product.id).productQuantity = product.productQuantity - 1;
-  this.productService.removeAllProductFromCart();
+  this.quantity = this.productAddedToCart.find(p => p.id === product.id).productQuantity;
+  if (this.quantity < 2 ) {
+    this.productAddedToCart.find(p => p.id === product.id).productQuantity = product.productQuantity;
+  } else {
+    this.productAddedToCart.find(p => p.id === product.id).productQuantity = product.productQuantity - 1;
+
+  }  this.productService.removeAllProductFromCart();
   this.productService.addProductToCart(this.productAddedToCart);
   this.calculateAllTotal(this.productAddedToCart);
 }
@@ -72,18 +86,19 @@ calculateAllTotal(allItems: Product[]) {
         total = total + (allItems[i].productQuantity * allItems[i].productPrice);
       }
   this.allTotal = total;
+  this.tax = this.allTotal * (9 / 100);
 
 }
-removeProduct(product: Product) {
+removeProduct(key: any) {
   this.productAddedToCart = this.productService.getProductFromCart();
+  console.log(this.productAddedToCart);
+  this.productAddedToCart.splice(key, 1);
 this.productService.removeAllProductFromCart();
 this.productService.addProductToCart(this.productAddedToCart);
 this.calculateAllTotal(this.productAddedToCart);
-
-
   this.cartItemCount = this.productAddedToCart.length;
-
 this.sharedServices.updateCartCount(this.cartItemCount);
+
 
 }
 }

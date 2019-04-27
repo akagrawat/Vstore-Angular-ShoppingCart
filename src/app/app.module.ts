@@ -35,6 +35,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { BillingDetailsComponent } from './billing-details/billing-details.component';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { MobileFilterPipe } from './mobile/mobile-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,8 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
     CheckoutComponent,
     BillingDetailsComponent,
     PaymentDetailsComponent,
-    OrderConfirmationComponent
+    OrderConfirmationComponent,
+    MobileFilterPipe,
   ],
   imports: [
     BrowserModule,
